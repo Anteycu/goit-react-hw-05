@@ -1,10 +1,15 @@
-import React, { Component } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import { Route, Switch, NavLink } from "react-router-dom";
 import { fetchMoviesDetails } from "../../helpers/imagesApi";
-import Cast from "../Cast";
-import Reviews from "../Reviews";
 import routes from "../../routes";
 import "./MovieDetailsPage.css";
+
+const AsyncCast = lazy(() =>
+  import("../Cast" /* webpackChunkName: "cast-section" */)
+);
+const AsyncReviews = lazy(() =>
+  import("../Reviews" /* webpackChunkName: "review-section" */)
+);
 
 export default class MovieDetailsPage extends Component {
   state = {
@@ -88,10 +93,12 @@ export default class MovieDetailsPage extends Component {
             </ul>
           </div>
         )}
-        <Switch>
-          <Route path={`${match.path}/cast`} component={Cast} />
-          <Route path={`${match.path}/reviews`} component={Reviews} />
-        </Switch>
+        <Suspense fallback={<h2>Loading...</h2>}>
+          <Switch>
+            <Route path={`${match.path}/cast`} component={AsyncCast} />
+            <Route path={`${match.path}/reviews`} component={AsyncReviews} />
+          </Switch>
+        </Suspense>
       </div>
     );
   }
