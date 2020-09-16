@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Route, Switch, NavLink } from "react-router-dom";
-import { fetchMoviesDetails } from "../helpers/imagesApi";
-import Cast from "./Cast";
-import Reviews from "./Reviews";
-// import { NavigationMovieDetails } from "../components/Navigation/Navigation";
-import routes from "../routes";
+import { fetchMoviesDetails } from "../../helpers/imagesApi";
+import Cast from "../Cast";
+import Reviews from "../Reviews";
+import routes from "../../routes";
+import "./MovieDetailsPage.css";
 
 export default class MovieDetailsPage extends Component {
   state = {
@@ -15,7 +15,6 @@ export default class MovieDetailsPage extends Component {
     fetchMoviesDetails(this.props.match.params.movieId).then((movie) =>
       this.setState({ movie })
     );
-    // fetchMoviesDetails(this.props.match.params.movieId).then(console.log);
   }
 
   handleGoBack = () => {
@@ -42,17 +41,30 @@ export default class MovieDetailsPage extends Component {
     return (
       <div>
         <p>Welcome on MovieDetailsPage component</p>
-        <button onClick={this.handleGoBack} type="button">
+        <button className={"Button"} onClick={this.handleGoBack} type="button">
           Back to list
         </button>
         <hr></hr>
         {movie && (
-          <>
-            <img src={`${this.movieImgUrl()}`} alt={movie.original_title} />
-            <h1>{movie.original_title}</h1>
-            <ul>
-              <li>
+          <div className={"Container"}>
+            <img
+              className={"ImageItem-image"}
+              src={`${this.movieImgUrl()}`}
+              alt={movie.original_title}
+            />
+            <div className={"Info"}>
+              <h1 className={"Title"}>{movie.original_title}</h1>
+              <h2 className={"Overview"}>Overview</h2>
+              <p className={"Overview-item"}>{movie.overview}</p>
+              <h2 className={"Date "}>Release date</h2>
+              <p className={"Date-item "}>{movie.release_date}</p>
+              <h2 className={"Rating "}>Rating</h2>
+              <p className={"Rating-item "}>{movie.vote_average}</p>
+            </div>
+            <ul className={"Nav-list"}>
+              <li className={"Nav-item"}>
                 <NavLink
+                  className={"Button"}
                   exact
                   to={{
                     pathname: `${match.url}/cast`,
@@ -62,8 +74,9 @@ export default class MovieDetailsPage extends Component {
                   Cast
                 </NavLink>
               </li>
-              <li>
+              <li className={"Nav-item"}>
                 <NavLink
+                  className={"Button"}
                   to={{
                     pathname: `${match.url}/reviews`,
                     state: { from: this.props.location },
@@ -73,7 +86,7 @@ export default class MovieDetailsPage extends Component {
                 </NavLink>
               </li>
             </ul>
-          </>
+          </div>
         )}
         <Switch>
           <Route path={`${match.path}/cast`} component={Cast} />

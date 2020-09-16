@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { fetchMoviesCast } from "../helpers/imagesApi";
+import { Notification } from "../components/Notification/Notification";
 
 export default class Cast extends Component {
   state = {
@@ -10,7 +11,6 @@ export default class Cast extends Component {
     fetchMoviesCast(this.props.match.params.movieId).then((cast) =>
       this.setState({ cast })
     );
-    // fetchMoviesCast(this.props.match.params.movieId).then(console.log);
   }
 
   castImgUrl = (imgPath) => {
@@ -22,10 +22,9 @@ export default class Cast extends Component {
 
   render() {
     const { cast } = this.state;
-    console.log(cast);
     return (
       <div>
-        {cast.length > 0 && (
+        {cast.length > 0 ? (
           <>
             <p>Welcome on Cast component</p>
             <ul>
@@ -41,6 +40,10 @@ export default class Cast extends Component {
               ))}
             </ul>
           </>
+        ) : (
+          <Notification
+            message={`Sorry, but we haven't ${Object.keys(this.state)}`}
+          />
         )}
       </div>
     );

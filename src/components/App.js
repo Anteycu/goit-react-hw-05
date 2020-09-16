@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { Switch, Route, Redirect, NavLink } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "../views/Home";
 import MoviesPage from "../views/MoviesPage";
-import MovieDetailsPage from "../views/MovieDetailsPage";
-import { Navigation } from "./Navigation/Navigation";
+import MovieDetailsPage from "../views/MovieDetailsPage/MovieDetailsPage";
 import routes from "../routes";
 import { HeaderApp } from "./HeaderApp";
 

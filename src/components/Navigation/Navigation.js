@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import routes from "../../routes";
 import "./Navigation.css";
@@ -23,22 +22,3 @@ export function Navigation() {
     </>
   );
 }
-
-// export function NavigationMovieDetails() {
-//   return (
-//     <ul>
-//       <li>
-//         <NavLink exact to={routes.cast}>
-//           Cast
-//         </NavLink>
-//       </li>
-//       <li>
-//         <NavLink to={routes.reviews}>Reviews</NavLink>
-//       </li>
-//     </ul>
-//   );
-// }
-
-// Button.propTypes = {
-//   handleFetch: PropTypes.func,
-// };
