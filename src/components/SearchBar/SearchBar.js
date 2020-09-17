@@ -12,6 +12,10 @@ export class SearchBar extends Component {
   };
 
   handleChange = (e) => {
+    // if (e) {
+    //   this.setState({ inputValue: e.target.value });
+    // }
+
     this.setState({ inputValue: e.target.value });
   };
 

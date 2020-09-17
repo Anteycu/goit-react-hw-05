@@ -14,6 +14,7 @@ const AsyncReviews = lazy(() =>
 export default class MovieDetailsPage extends Component {
   state = {
     movie: null,
+    // записать сюда локэйшн
   };
 
   componentDidMount() {
@@ -26,6 +27,7 @@ export default class MovieDetailsPage extends Component {
     const { state } = this.props.location;
 
     if (state && state.from) {
+      // return this.props.history.push({ ...state.from, pathname: "/movies" });
       return this.props.history.push(state.from);
     }
 
