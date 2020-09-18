@@ -14,27 +14,23 @@ const AsyncReviews = lazy(() =>
 export default class MovieDetailsPage extends Component {
   state = {
     movie: null,
-    // записать сюда локэйшн
+    location: null,
   };
 
   componentDidMount() {
     fetchMoviesDetails(this.props.match.params.movieId).then((movie) =>
       this.setState({ movie })
     );
+
+    this.setState({ location: this.props.location.state.from });
   }
 
   handleGoBack = () => {
-    const { state } = this.props.location;
+    const { location } = this.state;
 
-    if (state && state.from) {
-      // return this.props.history.push({ ...state.from, pathname: "/movies" });
-      return this.props.history.push(state.from);
+    if (location) {
+      return this.props.history.push(location);
     }
-
-    // if (state.from.pathname === "путь на отрисованный фильм") {
-    //   return this.props.history.push({pathname:"/movies", search:"последний запрос"});
-    // }
-
     this.props.history.push(routes.home);
   };
 

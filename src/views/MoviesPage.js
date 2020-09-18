@@ -10,26 +10,9 @@ export default class MoviesPage extends Component {
   };
 
   componentDidMount() {
-    console.log("mount");
     const { query } = getQueryParams(this.props.location.search);
-    if (!query) {
-      this.setState({ movies: [] });
-    }
-
     if (query) {
       this.fetchMovies(query);
-    }
-  }
-
-  shouldComponentUpdate(prevProps, prevState) {
-    const { query: nextQuery } = getQueryParams(this.props.location.search);
-    const { query: prevQuery } = getQueryParams(prevProps.location.search);
-    console.log(nextQuery);
-    if (nextQuery !== prevQuery) {
-      // this.setState({ movies: [] });
-      return true;
-    } else {
-      return false;
     }
   }
 
@@ -37,13 +20,11 @@ export default class MoviesPage extends Component {
     const { query: prevQuery } = getQueryParams(prevProps.location.search);
     const { query: nextQuery } = getQueryParams(this.props.location.search);
 
-    console.log(prevQuery, nextQuery);
-    if (!nextQuery) {
-      return;
-    }
-
     if (prevQuery !== nextQuery) {
-      this.fetchMovies(nextQuery);
+      if (!nextQuery) {
+        this.setState({ movies: null });
+        return;
+      } else this.fetchMovies(nextQuery);
     }
   }
 
