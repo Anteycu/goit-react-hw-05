@@ -9,13 +9,20 @@ const options = {
   },
 };
 
-const trendMovieReq = timeWindow => {
-  return axios.get(
-    `${url}trending/movie/${timeWindow}?language=en-US`,
-    options
+export const trendMoviesReq = timeWindow =>
+  axios(`${url}trending/movie/${timeWindow}?language=en-US`, options).then(
+    ({ result }) => result
   );
-};
 
-export default trendMovieReq;
+export const searchMoviesReq = query =>
+  axios(`${url}search/movie?query=${query}`, options).then(
+    ({ result }) => result
+  );
 
-// apiKey = 74deffb283af53f0c578a6d4e99eab77
+export const movieDetailsReq = id => axios(`${url}movie/${id}`, options);
+
+export const movieCastReq = id =>
+  axios(`${url}movie/${id}/cast`, options).then(({ cast }) => cast);
+
+export const movieReviewsReq = id =>
+  axios(`${url}movie/${id}/reviews`, options).then(({ reviews }) => reviews);
