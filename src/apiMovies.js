@@ -19,7 +19,8 @@ export const searchMoviesReq = query =>
     ({ data }) => data.results
   );
 
-export const movieDetailsReq = id => axios(`${url}movie/${id}`, options);
+export const movieDetailsReq = id =>
+  axios(`${url}movie/${id}`, options).then(({ data }) => data);
 
 export const movieCastReq = id =>
   axios(`${url}movie/${id}/credits`, options).then(({ data }) => data.cast);
