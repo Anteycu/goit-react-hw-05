@@ -23,7 +23,7 @@ const HomePage = () => {
     <div>
       <h2>Trending movies</h2>
       {error ? (
-        <p>Something goes wrong: {error} </p>
+        <p>Something goes wrong: {error.message} </p>
       ) : (
         <MovieList moviesData={movies} />
       )}
