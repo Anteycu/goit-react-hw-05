@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 const Navigation = () => (
-  <div>
+  <div className="container">
     <ul>
       <li>
         <NavLink to={"/"}>Home</NavLink>

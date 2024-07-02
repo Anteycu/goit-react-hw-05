@@ -4,19 +4,28 @@ import { searchMoviesReq } from "../apiMovies";
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchSearchMovies = async () => {
-      const movies = await searchMoviesReq("ukraine");
-      setMovies(movies);
+      try {
+        const movies = await searchMoviesReq("ukraine");
+        setMovies(movies);
+      } catch (error) {
+        setError(error.message);
+      }
     };
     fetchSearchMovies();
   }, []);
 
   return (
     <div>
-      <p>Films with search result: ...</p>
-      <MovieList moviesData={movies} />
+      <h2>Films you search</h2>
+      {error ? (
+        <p>Something goes wrong: {error}</p>
+      ) : (
+        <MovieList moviesData={movies} />
+      )}
     </div>
   );
 };
