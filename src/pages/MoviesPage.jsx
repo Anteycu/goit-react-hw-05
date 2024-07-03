@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import MovieList from "../components/MovieList/MovieList";
 import { searchMoviesReq } from "../apiMovies";
+import Notifications from "../components/Notifications/Notifications";
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
@@ -22,7 +23,7 @@ const MoviesPage = () => {
     <div>
       <h2>Films you search</h2>
       {error ? (
-        <p>Something goes wrong: {error}</p>
+        <Notifications type="error" msg={error} />
       ) : (
         <MovieList moviesData={movies} />
       )}

@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { movieDetailsReq } from "../apiMovies";
+import Movie from "../components/Movie/Movie";
+import Notifications from "../components/Notifications/Notifications";
 
 const MovieDetailsPage = () => {
   const [film, setFilm] = useState({});
   const [error, setError] = useState(false);
   const { movieId } = useParams();
+  const location = useLocation();
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -22,13 +25,23 @@ const MovieDetailsPage = () => {
 
   return (
     <div>
+      <Link to={location.state}>Go back</Link>
       {error ? (
-        <p>Something goes wrong: {error}</p>
+        <Notifications type="error" msg={error} />
       ) : (
-        <h2>Movie title {film.original_title}</h2>
+        <Movie filmDetails={film} />
       )}
-      <Link to={"cast"}>Cast</Link>
-      <Link to={"reviews"}>Reviews</Link>
+
+      <h3>Additional information</h3>
+      <ul>
+        <li>
+          <Link to={"cast"}>Cast</Link>
+        </li>
+        <li>
+          <Link to={"reviews"}>Reviews</Link>
+        </li>
+      </ul>
+
       <Outlet />
     </div>
   );
