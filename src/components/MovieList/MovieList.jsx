@@ -6,11 +6,13 @@ const MovieList = ({ moviesData }) => {
   return (
     <div>
       <ul>
-        {moviesData.map(({ id, title, poster_path }) => (
+        {moviesData.map(({ id, title }) => (
           <li key={id}>
-            <Link to={location.pathname === "/" ? `movies/${id}` : `${id}`}>
-              <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} />
-              <h2>{title}</h2>
+            <Link
+              to={location.pathname === "/" ? `movies/${id}` : `${id}`}
+              state={location}
+            >
+              <h3>{title}</h3>
             </Link>
           </li>
         ))}

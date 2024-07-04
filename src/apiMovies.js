@@ -26,4 +26,4 @@ export const movieCastReq = id =>
   axios(`${url}movie/${id}/credits`, options).then(({ data }) => data.cast);
 
 export const movieReviewsReq = id =>
-  axios(`${url}movie/${id}/reviews`, options).then(({ data }) => data.reviews);
+  axios(`${url}movie/${id}/reviews`, options).then(({ data }) => data.results);

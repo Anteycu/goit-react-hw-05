@@ -15,10 +15,10 @@
   -moz-osx-font-smoothing: grayscale;
 
   @media screen and (min-width: 768px) {
-    font-size: 22px;
+    font-size: 20px;
   }
   @media screen and (min-width: 1280px) {
-    font-size: 26px;
+    font-size: 24px;
   }
 }
 
@@ -26,7 +26,6 @@
   max-width: 1440px;
   margin: 0 auto;
   padding: 1rem;
-  text-align: center;
 }
 
 body {
@@ -88,5 +87,19 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+.container {
+  width: 350px;
+  margin: 0 auto;
+
+  @media screen and (min-width: 768px) {
+    width: 738px;
+    margin: 0 auto;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 1250px;
+    margin: 0 auto;
   }
 }

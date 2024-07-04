@@ -1,6 +1,7 @@
 import MovieList from "../components/MovieList/MovieList";
 import { useEffect, useState } from "react";
 import { trendMoviesReq } from "../apiMovies";
+import Notifications from "../components/Notifications/Notifications";
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
@@ -21,9 +22,9 @@ const HomePage = () => {
 
   return (
     <div>
-      <h2>Trending movies</h2>
+      <h2>Trending movies today</h2>
       {error ? (
-        <p>Something goes wrong: {error.message} </p>
+        <Notifications type="error" msg={error} />
       ) : (
         <MovieList moviesData={movies} />
       )}

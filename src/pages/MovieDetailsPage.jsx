@@ -1,25 +1,47 @@
 import { useEffect, useState } from "react";
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { movieDetailsReq } from "../apiMovies";
+import Movie from "../components/Movie/Movie";
+import Notifications from "../components/Notifications/Notifications";
 
 const MovieDetailsPage = () => {
-  const [film, setFilm] = useState(null);
+  const [film, setFilm] = useState({});
+  const [error, setError] = useState(false);
   const { movieId } = useParams();
+  const location = useLocation();
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
-      const movieDetails = await movieDetailsReq(movieId);
-      setFilm(movieDetails);
+      try {
+        const movieDetails = await movieDetailsReq(movieId);
+        setFilm(movieDetails);
+      } catch (error) {
+        setError(error.message);
+      }
     };
 
     fetchMovieDetails();
-  }, []);
+  }, [movieId]);
 
   return (
     <div>
-      {film && <h2>Movie title {film.original_title}</h2>}
-      <Link to={"cast"}>Cast</Link>
-      <Link to={"reviews"}>Reviews</Link>
+      <Link to={location.state}>Go back</Link>
+      {error ? (
+        <Notifications type="error" msg={error} />
+      ) : (
+        <Movie filmDetails={film} />
+      )}
+
+      <h3>Additional information</h3>
+      <ul>
+        <li>
+          <Link to={"cast"}>Cast</Link>
+        </li>
+        <li>
+          <Link to={"reviews"}>Reviews</Link>
+        </li>
+      </ul>
+
       <Outlet />
     </div>
   );
