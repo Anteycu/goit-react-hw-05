@@ -27,8 +27,8 @@ const MovieCast = () => {
         <p>Something goes wrong: {error}</p>
       ) : (
         <ul>
-          {actors.map(({ character, name, profile_path, id }) => (
-            <li key={id}>
+          {actors.map(({ character, name, profile_path, credit_id }) => (
+            <li key={credit_id}>
               <img src={`https://image.tmdb.org/t/p/w200${profile_path}`} />
               <h3>{name}</h3>
               <p>Character: {character}</p>
