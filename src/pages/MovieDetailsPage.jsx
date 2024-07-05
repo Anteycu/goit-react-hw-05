@@ -10,6 +10,8 @@ const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const location = useLocation();
 
+  const backLinkLocation = location.state ?? "/movies";
+
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
@@ -25,7 +27,7 @@ const MovieDetailsPage = () => {
 
   return (
     <div>
-      <Link to={location.state}>Go back</Link>
+      <Link to={backLinkLocation}>Go back</Link>
       {error ? (
         <Notifications type="error" msg={error} />
       ) : (
@@ -35,10 +37,14 @@ const MovieDetailsPage = () => {
       <h3>Additional information</h3>
       <ul>
         <li>
-          <Link to={"cast"}>Cast</Link>
+          <Link to={"cast"} state={backLinkLocation}>
+            Cast
+          </Link>
         </li>
         <li>
-          <Link to={"reviews"}>Reviews</Link>
+          <Link to={"reviews"} state={backLinkLocation}>
+            Reviews
+          </Link>
         </li>
       </ul>
 

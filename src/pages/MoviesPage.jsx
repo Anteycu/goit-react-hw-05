@@ -10,9 +10,9 @@ const MoviesPage = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const query = e.target.title.value;
+    const form = e.currentTarget;
     try {
-      const movies = await searchMoviesReq(query);
+      const movies = await searchMoviesReq(form.elements.title.value);
       setMovies(movies);
     } catch (error) {
       setError(error.message);
