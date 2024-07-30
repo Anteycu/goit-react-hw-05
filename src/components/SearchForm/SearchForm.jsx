@@ -1,12 +1,7 @@
 const SearchForm = ({ onSubmit }) => {
   return (
     <form onSubmit={onSubmit}>
-      <input
-        name="title"
-        type="text"
-        // value={query}
-        // onChange={e => queryStringChanger(e.currentTarget.value)}
-      />
+      <input name="title" type="text" />
       <button type="submit">Search</button>
     </form>
   );
