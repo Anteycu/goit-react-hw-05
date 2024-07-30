@@ -9,22 +9,22 @@ const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get("query") ?? "";
+  const searchQuery = searchParams.get("query") ?? "";
 
   useEffect(() => {
-    if (query === "") return;
+    if (searchQuery === "") return;
 
-    const fetchSearchMovies = async query => {
+    const fetchSearchMovies = async queryReq => {
       try {
-        const movies = await searchMoviesReq(query);
+        const movies = await searchMoviesReq(queryReq);
         setMovies(movies);
       } catch (error) {
         setError(error.message);
       }
     };
 
-    fetchSearchMovies(query);
-  }, [query]);
+    fetchSearchMovies(searchQuery);
+  }, [searchQuery]);
 
   const updateSearchParam = query => {
     const nextParam = query !== "" ? { query } : {};
