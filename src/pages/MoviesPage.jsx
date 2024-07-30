@@ -9,34 +9,38 @@ const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-
-  const searchQuery = searchParams.get("query") ?? "";
+  const query = searchParams.get("query") ?? "";
 
   useEffect(() => {
-    if (searchQuery === "") return;
+    if (query === "") return;
 
-    const fetchMovies = async () => {
+    const fetchSearchMovies = async query => {
       try {
-        const movies = await searchMoviesReq(searchQuery);
+        const movies = await searchMoviesReq(query);
         setMovies(movies);
       } catch (error) {
         setError(error.message);
       }
     };
-    fetchMovies();
-  }, [searchQuery]);
 
-  const handleSubmit = async e => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const query = form.elements.title.value;
+    fetchSearchMovies(query);
+  }, [query]);
+
+  const updateSearchParam = query => {
     const nextParam = query !== "" ? { query } : {};
     setSearchParams(nextParam);
   };
 
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    updateSearchParam(form.elements.title.value);
+    form.reset();
+  };
+
   return (
     <div>
-      <SearchForm onSubmit={handleSubmit} searchQuery={searchQuery} />
+      <SearchForm onSubmit={handleSubmit} />
       <h2>Films you search</h2>
       {error ? (
         <Notifications type="error" msg={error} />
