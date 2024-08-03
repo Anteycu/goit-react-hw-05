@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import MovieList from "../components/MovieList/MovieList";
-import { searchMoviesReq } from "../apiMovies";
-import Notifications from "../components/Notifications/Notifications";
-import SearchForm from "../components/SearchForm/SearchForm";
+import MovieList from "../../components/MovieList/MovieList";
+import { searchMoviesReq } from "../../apiMovies";
+import Notifications from "../../components/Notifications/Notifications";
+import SearchForm from "../../components/SearchForm/SearchForm";
+import s from "./MoviesPage.module.css";
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
@@ -39,9 +40,9 @@ const MoviesPage = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <SearchForm onSubmit={handleSubmit} />
-      <h2>Films you search</h2>
+      <h2 className={s.title}>Films you searched for:</h2>
       {error ? (
         <Notifications type="error" msg={error} />
       ) : (

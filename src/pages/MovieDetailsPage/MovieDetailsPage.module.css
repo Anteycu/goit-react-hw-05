@@ -1,0 +1,19 @@
+.creditsList {
+  display: flex;
+  gap: 15px;
+}
+
+.link,
+.link:visited {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: #3942fc;
+}
+
+.link:hover {
+  color: #747bff;
+}
+
+.link:active {
+  color: #646cff;
+}

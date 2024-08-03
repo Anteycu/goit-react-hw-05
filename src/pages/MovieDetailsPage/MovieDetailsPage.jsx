@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
-import { movieDetailsReq } from "../apiMovies";
-import Movie from "../components/Movie/Movie";
-import Notifications from "../components/Notifications/Notifications";
+import { movieDetailsReq } from "../../apiMovies";
+import Movie from "../../components/Movie/Movie";
+import Notifications from "../../components/Notifications/Notifications";
+import s from "./MovieDetailsPage.module.css";
 
 const MovieDetailsPage = () => {
   const [film, setFilm] = useState({});
@@ -26,8 +27,10 @@ const MovieDetailsPage = () => {
   }, [movieId]);
 
   return (
-    <div>
-      <Link to={backLinkLocation}>Go back</Link>
+    <div className="container">
+      <Link to={backLinkLocation} className={s.link}>
+        Go back
+      </Link>
       {error ? (
         <Notifications type="error" msg={error} />
       ) : (
@@ -35,14 +38,14 @@ const MovieDetailsPage = () => {
       )}
 
       <h3>Additional information</h3>
-      <ul>
+      <ul className={s.creditsList}>
         <li>
-          <Link to={"cast"} state={backLinkLocation}>
+          <Link to={"cast"} state={backLinkLocation} className={s.link}>
             Cast
           </Link>
         </li>
         <li>
-          <Link to={"reviews"} state={backLinkLocation}>
+          <Link to={"reviews"} state={backLinkLocation} className={s.link}>
             Reviews
           </Link>
         </li>

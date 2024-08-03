@@ -1,7 +1,8 @@
-import MovieList from "../components/MovieList/MovieList";
+import MovieList from "../../components/MovieList/MovieList";
 import { useEffect, useState } from "react";
-import { trendMoviesReq } from "../apiMovies";
-import Notifications from "../components/Notifications/Notifications";
+import { trendMoviesReq } from "../../apiMovies";
+import Notifications from "../../components/Notifications/Notifications";
+import s from "./HomePage.module.css";
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
@@ -21,8 +22,8 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Trending movies today</h2>
+    <div className="container">
+      <h2 className={s.title}>Trending movies today</h2>
       {error ? (
         <Notifications type="error" msg={error} />
       ) : (

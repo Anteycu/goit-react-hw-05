@@ -1,0 +1,20 @@
+.movieList {
+  list-style: square;
+}
+
+.movieList li + li {
+  margin-top: 4px;
+}
+
+.movieLink,
+.movieLink:visited {
+  color: #3942fc;
+}
+
+.movieLink:hover {
+  color: #747bff;
+}
+
+.movieLink:active {
+  color: #646cff;
+}
