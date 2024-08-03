@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { movieDetailsReq } from "../../apiMovies";
 import Movie from "../../components/Movie/Movie";
@@ -50,8 +50,9 @@ const MovieDetailsPage = () => {
           </Link>
         </li>
       </ul>
-
-      <Outlet />
+      <Suspense fallback={<h3 className="container">Loading credits...</h3>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
