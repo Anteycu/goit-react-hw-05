@@ -23,9 +23,9 @@
 }
 
 #root {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 1rem;
+  width: 100%;
+  min-height: 100vh;
+  /* margin: 0 auto; */
 }
 
 body {
@@ -34,6 +34,25 @@ body {
   place-items: center;
   min-width: 375px;
   min-height: 100vh;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 1rem;
+
+  /* width: 350px;
+  margin: 0 auto;
+  padding: 1rem;
+
+  @media screen and (min-width: 768px) {
+    width: 738px;
+    margin: 0 auto;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 1440px;
+    margin: 0 auto;
+  } */
 }
 
 ul,
@@ -87,19 +106,5 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
-  }
-}
-
-.container {
-  width: 350px;
-  margin: 0 auto;
-
-  @media screen and (min-width: 768px) {
-    width: 738px;
-    margin: 0 auto;
-  }
-  @media screen and (min-width: 1280px) {
-    width: 1250px;
-    margin: 0 auto;
   }
 }

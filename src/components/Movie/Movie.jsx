@@ -1,7 +1,9 @@
+import s from "./Movie.module.css";
+
 const Movie = ({
   filmDetails: { original_title, poster_path, vote_average, overview, genres },
 }) => (
-  <div>
+  <div className={s}>
     <img src={`https://image.tmdb.org/t/p/w400${poster_path}`} />
     <h2>{original_title}</h2>
     <p>{vote_average}</p>

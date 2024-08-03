@@ -1,0 +1,23 @@
+.nav {
+  box-shadow: inset 0px -8px 0px lightsteelblue;
+}
+
+.navList {
+  display: flex;
+  gap: 15px;
+}
+
+.navLink {
+  font-size: 28px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #213547;
+}
+
+.navLink:hover {
+  color: #747bff;
+}
+
+.active {
+  color: #646cff;
+}
