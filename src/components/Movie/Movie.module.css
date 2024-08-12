@@ -1,0 +1,18 @@
+.movieInfo {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.movieDetails h2 {
+  margin-bottom: 24px;
+}
+
+.movieDetails section + section {
+  margin-top: 20px;
+}
+
+.genres {
+  display: flex;
+  gap: 16px;
+}

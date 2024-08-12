@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { movieReviewsReq } from "../../apiMovies";
 import { useParams } from "react-router-dom";
+import s from "./MovieReviews.module.css";
 
 const MovieReviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -22,11 +23,11 @@ const MovieReviews = () => {
 
   return (
     <div>
-      <h2>Something about movie reviews</h2>
+      <h2 className={s.sectionDescr}>Something about movie reviews</h2>
       {error ? (
         <p>Something goes wrong: {error}</p>
       ) : (
-        <ul>
+        <ul className={s.reviewList}>
           {reviews.map(({ author, content, id }) => (
             <li key={id}>
               <h3>{author}</h3>

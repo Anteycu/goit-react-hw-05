@@ -1,0 +1,13 @@
+.sectionDescr {
+  margin-bottom: 20px;
+}
+
+.reviewList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.reviewList p {
+  font-size: 20px;
+}
